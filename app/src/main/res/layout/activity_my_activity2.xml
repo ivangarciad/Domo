@@ -1,6 +1,7 @@
 <TableLayout
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:background="@drawable/wallpaper"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <TableRow
@@ -110,7 +111,7 @@
         android:layout_height="fill_parent">
 
         <Button
-            style="?android:attr/buttonStyleSmall"
+            style="@style/btnStyleBeige"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Open"
@@ -124,7 +125,7 @@
         android:layout_height="fill_parent">
 
         <Button
-            style="?android:attr/buttonStyleSmall"
+            style="@style/btnStyleBeige"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Close"

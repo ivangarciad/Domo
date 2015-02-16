@@ -1,5 +1,6 @@
 <TableLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@drawable/wallpaper"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
 
@@ -13,12 +14,11 @@
 
         <Button
             android:id="@+id/cocina_button"
-            style="?android:attr/buttonStyleSmall"
+            style="@style/btnStyleOrange"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_column="1"
-            android:text="Caldera"
-            android:textColor="#ffff0e0b" />
+            android:text="Caldera" />
     </TableRow>
 
     <TableRow
@@ -31,7 +31,7 @@
 
         <Button
             android:id="@+id/salon_button"
-            style="?android:attr/buttonStyleSmall"
+            style="@style/btnStyleBeige"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_column="1"
@@ -48,7 +48,7 @@
 
         <Button
             android:id="@+id/estudio"
-            style="?android:attr/buttonStyleSmall"
+            style="@style/btnStyleBeige"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_column="1"

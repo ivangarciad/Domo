@@ -182,10 +182,28 @@ public class MyActivity2 extends Activity {
                         openHour.setText(object_recv.getString("TimeOpen"));
                         closeHour.setText(object_recv.getString("TimeClose"));
                     }
-                    if (object_recv.getString("AutoSolar").equals("True"))
+                    if (object_recv.getString("AutoSolar").equals("True")) {
                         radioButton_Solar.setChecked(true);
-                    if (object_recv.getString("AutoProfile").equals("True"))
+                        openHour.setEnabled(false);
+                        closeHour.setEnabled(false);
+                    }
+
+                    if (object_recv.getString("AutoProfile").equals("True")) {
                         radioButton_Profile.setChecked(true);
+                        openHour.setEnabled(false);
+                        closeHour.setEnabled(false);
+                    }
+
+                    if (object_recv.getString("Status").equals("OPEN"))
+                    {
+                        open_button.setEnabled(false);
+                        close_button.setEnabled(true);
+                    }
+                    else if (object_recv.getString("Status").equals("CLOSE"))
+                    {
+                        close_button.setEnabled(false);
+                        open_button.setEnabled(true);
+                    }
 
                 } catch (IOException e) {
                     System.err.println("Couldn't read.");
@@ -199,8 +217,6 @@ public class MyActivity2 extends Activity {
         readerThread = new Thread(runnable, "SocketThread");
         readerThread.start();
 
-        //Log.d("NETWORK-RECEIVE", response);
-
         radioButton_Solar.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // The server changes the solar button
@@ -209,6 +225,9 @@ public class MyActivity2 extends Activity {
 
                 printwriter.write(message); //write the message to output stream
                 printwriter.flush();
+
+                openHour.setEnabled(false);
+                closeHour.setEnabled(false);
             }
         });
 
@@ -220,6 +239,9 @@ public class MyActivity2 extends Activity {
 
                 printwriter.write(message); //write the message to output stream
                 printwriter.flush();
+
+                openHour.setEnabled(true);
+                closeHour.setEnabled(true);
             }
         });
 
@@ -231,6 +253,9 @@ public class MyActivity2 extends Activity {
 
                 printwriter.write(message); //write the message to output stream
                 printwriter.flush();
+
+                open_button.setEnabled(false);
+                close_button.setEnabled(true);
             }
         });
 
@@ -242,6 +267,9 @@ public class MyActivity2 extends Activity {
 
                 printwriter.write(message); //write the message to output stream
                 printwriter.flush();
+
+                open_button.setEnabled(true);
+                close_button.setEnabled(false);
             }
         });
     }
