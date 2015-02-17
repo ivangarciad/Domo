@@ -8,6 +8,18 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent">
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Medium Text"
+            android:id="@+id/textlabel"
+            android:layout_column="1"
+            style="@style/AppTheme"
+            android:capitalize="none"
+            android:shadowColor="#ff000573"
+            android:textAlignment="center"
+            android:textColor="#ffb1e5ff" />
     </TableRow>
 
     <TableRow
@@ -111,7 +123,6 @@
         android:layout_height="fill_parent">
 
         <Button
-            style="@style/btnStyleBeige"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Open"
@@ -125,7 +136,6 @@
         android:layout_height="fill_parent">
 
         <Button
-            style="@style/btnStyleBeige"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Close"

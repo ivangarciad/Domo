@@ -62,6 +62,7 @@ public class MyActivity extends Activity {
             {
                 Intent intent = new Intent(MyActivity.this, MyActivity2.class);
                 intent.putExtra("id_room", "ID_HABITACION_1");
+                intent.putExtra("room_name", "Caldera");
                 startActivity(intent);
             }
         });
@@ -72,6 +73,7 @@ public class MyActivity extends Activity {
             {
                 Intent intent = new Intent(MyActivity.this, MyActivity2.class);
                 intent.putExtra("id_room", "ID_HABITACION_7");
+                intent.putExtra("room_name", "Salón");
                 startActivity(intent);
             }
         });
@@ -82,6 +84,7 @@ public class MyActivity extends Activity {
             {
                 Intent intent = new Intent(MyActivity.this, MyActivity2.class);
                 intent.putExtra("id_room", "ID_HABITACION_8");
+                intent.putExtra("room_name", "Estudio");
                 startActivity(intent);
             }
         });

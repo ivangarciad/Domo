@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
@@ -138,8 +139,11 @@ public class MyActivity2 extends Activity {
 
         Intent intent = getIntent();
         final String id_room = intent.getStringExtra("id_room");
+        final String room_name = intent.getStringExtra("room_name");
         Log.d("Id Room", id_room);
 
+
+        final TextView textLabel = (TextView) findViewById(R.id.textlabel);
         final RadioButton radioButton_Solar = (RadioButton) findViewById(R.id.radioButton_Solar);
         final RadioButton radioButton_Profile = (RadioButton) findViewById(R.id.radioButton_Profile);
         final RadioButton radioButton_Hour = (RadioButton) findViewById(R.id.radioButton_Hour);
@@ -148,6 +152,7 @@ public class MyActivity2 extends Activity {
         final Button open_button = (Button)findViewById(R.id.open_blind_button);
         final Button close_button = (Button)findViewById(R.id.close_blind_button);
 
+        textLabel.setText(room_name);
 
         // Petición de estado del blind al servidor
         writeJSON_GetStatus(id_room);

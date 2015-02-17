@@ -14,7 +14,6 @@
 
         <Button
             android:id="@+id/cocina_button"
-            style="@style/btnStyleOrange"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_column="1"
@@ -31,7 +30,6 @@
 
         <Button
             android:id="@+id/salon_button"
-            style="@style/btnStyleBeige"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_column="1"
@@ -48,7 +46,6 @@
 
         <Button
             android:id="@+id/estudio"
-            style="@style/btnStyleBeige"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_column="1"
@@ -75,5 +72,17 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent">
 
+    </TableRow>
+
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cocina"
+            android:id="@+id/button"
+            android:layout_column="1" />
     </TableRow>
 </TableLayout>
