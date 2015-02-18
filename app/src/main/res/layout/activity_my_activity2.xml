@@ -1,12 +1,7 @@
-<TableLayout
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@drawable/wallpaper"
-    xmlns:android="http://schemas.android.com/apk/res/android">
-
-    <TableRow
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
+    android:background="@drawable/wallpaper">
 
         <TextView
             android:layout_width="wrap_content"
@@ -14,23 +9,20 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Medium Text"
             android:id="@+id/textlabel"
-            android:layout_column="1"
             style="@style/AppTheme"
             android:capitalize="none"
             android:shadowColor="#ff000573"
             android:textAlignment="center"
-            android:textColor="#ffb1e5ff" />
-    </TableRow>
-
-    <TableRow
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
+            android:textColor="#ffb1e5ff"
+            android:layout_marginLeft="130dp"
+            android:layout_marginTop="5dp"/>
 
         <RadioGroup
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_column="0"
-            android:id="@+id/radioGroup">
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:id="@+id/radioGroup"
+            android:layout_below="@+id/textlabel">
 
             <RadioButton
                 android:layout_width="wrap_content"
@@ -50,97 +42,223 @@
                 android:text="Hour"
                 android:id="@+id/radioButton_Hour" />
         </RadioGroup>
-    </TableRow>
-
-    <TableRow
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"></TableRow>
-
-    <TableRow
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="50dp"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
             android:text="Open"
             android:id="@+id/textView"
-            android:layout_column="1" />
-
-    </TableRow>
-
-    <TableRow
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"></TableRow>
-
-    <TableRow
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
+            android:layout_below="@+id/radioGroup" />
 
         <EditText
-            android:layout_width="wrap_content"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="60dp"
+            android:layout_marginTop="0dp"
             android:inputType="time"
             android:ems="10"
             android:id="@+id/editText_HourOpen"
-            android:layout_column="1" />
-
-    </TableRow>
-
-    <TableRow
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
+            android:layout_below="@+id/radioGroup" />
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="50dp"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="180dp"
+            android:layout_marginTop="7dp"
             android:text="Close"
             android:id="@+id/textView2"
-            android:layout_column="1" />
-    </TableRow>
-
-    <TableRow
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
+            android:layout_below="@+id/radioGroup" />
 
         <EditText
-            android:layout_width="wrap_content"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="230dp"
+            android:layout_marginTop="0dp"
             android:inputType="time"
             android:ems="10"
             android:id="@+id/editText_HourClose"
-            android:layout_column="1" />
-    </TableRow>
-
-    <TableRow
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
-
-    </TableRow>
-
-    <TableRow
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
+            android:layout_below="@+id/radioGroup" />
 
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="60dp"
+            android:layout_marginTop="5dp"
             android:text="Open"
             android:id="@+id/open_blind_button"
-            android:layout_column="1" />
-
-    </TableRow>
-
-    <TableRow
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
+            android:layout_below="@+id/editText_HourClose" />
 
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="60dp"
+            android:layout_marginTop="0dp"
             android:text="Close"
             android:id="@+id/close_blind_button"
-            android:layout_column="1" />
-    </TableRow>
+            android:layout_below="@+id/open_blind_button"/>
 
-</TableLayout>
+        <TextView
+            android:layout_width="20dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:text="08"
+            android:id="@+id/hour_08"
+            android:layout_below="@+id/close_blind_button"/>
+
+        <SeekBar
+            android:layout_width="210dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="5dp"
+            android:id="@+id/seekBar1"
+            android:max="100"
+            android:layout_below="@+id/close_blind_button"/>
+
+        <TextView
+            android:layout_width="20dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:text="10"
+            android:id="@+id/hour_10"
+            android:layout_below="@+id/hour_08" />
+
+        <SeekBar
+            android:layout_width="210dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="5dp"
+            android:id="@+id/seekBar2"
+            android:max="100"
+            android:layout_below="@+id/hour_08"/>
+
+        <TextView
+            android:layout_width="20dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:text="12"
+            android:id="@+id/hour_12"
+            android:layout_below="@+id/hour_10" />
+
+         <SeekBar
+            android:layout_width="210dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="5dp"
+            android:id="@+id/seekBar3"
+            android:max="100"
+            android:layout_below="@+id/hour_10"/>
+
+        <TextView
+            android:layout_width="20dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:text="14"
+            android:id="@+id/hour_14"
+            android:layout_below="@+id/hour_12" />
+
+        <SeekBar
+            android:layout_width="210dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="5dp"
+            android:id="@+id/seekBar4"
+            android:max="100"
+            android:layout_below="@+id/hour_12"/>
+
+        <TextView
+            android:layout_width="20dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:text="16"
+            android:id="@+id/hour_16"
+            android:layout_below="@+id/hour_14" />
+
+        <SeekBar
+            android:layout_width="210dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="5dp"
+            android:id="@+id/seekBar5"
+            android:max="100"
+            android:layout_below="@+id/hour_14"/>
+
+        <TextView
+            android:layout_width="20dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:text="18"
+            android:id="@+id/hour_18"
+            android:layout_below="@+id/hour_16" />
+
+        <SeekBar
+            android:layout_width="210dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="5dp"
+            android:id="@+id/seekBar6"
+            android:max="100"
+            android:layout_below="@+id/hour_16"/>
+
+    <TextView
+        android:layout_width="20dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:text="20"
+        android:id="@+id/hour_20"
+        android:layout_below="@+id/hour_18" />
+
+    <SeekBar
+        android:layout_width="210dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="5dp"
+        android:id="@+id/seekBar7"
+        android:max="100"
+        android:layout_below="@+id/hour_18"/>
+
+    <TextView
+        android:layout_width="20dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:text="22"
+        android:id="@+id/hour_22"
+        android:layout_below="@+id/hour_20" />
+
+    <SeekBar
+        android:layout_width="210dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="5dp"
+        android:id="@+id/seekBar8"
+        android:max="100"
+        android:layout_below="@+id/hour_20"/>
+
+    <TextView
+        android:layout_width="20dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:text="24"
+        android:id="@+id/hour_24"
+        android:layout_below="@+id/hour_22" />
+
+    <SeekBar
+        android:layout_width="210dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="5dp"
+        android:id="@+id/seekBar9"
+        android:max="100"
+        android:layout_below="@+id/hour_22"/>
+
+</RelativeLayout>

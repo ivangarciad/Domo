@@ -13,7 +13,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.RadioButton;
-import android.widget.RadioGroup;
+import android.widget.SeekBar;
+import android.widget.SeekBar.OnSeekBarChangeListener;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -128,6 +129,38 @@ public class MyActivity2 extends Activity {
         System.out.println(object);
     }
 
+    public void  writeJSON_Profile(String id_habitacion, int value_1, int value_2, int value_3, int value_4, int value_5, int value_6,
+                                   int value_7, int value_8, int value_9) {
+        object = new JSONObject();
+        try {
+            object.put("Name", id_habitacion);
+            object.put("GetStatus", "False");
+            object.put("Status", "Not deffined");
+            object.put("TimeOpen", "NO_HOUR");
+            object.put("TimeClose", "NO_HOUR");
+            object.put("Auto", "True");
+            object.put("AutoSolar", "False");
+            object.put("AutoProfile", "False");
+            object.put("ProfileName", "None");
+            object.put("ProfileIndex", "None");
+            object.put("OpenBlind", "False");
+            object.put("CloseBlind", "False");
+            object.put("value_1", String.valueOf(value_1));
+            object.put("value_2", String.valueOf(value_2));
+            object.put("value_3", String.valueOf(value_3));
+            object.put("value_4", String.valueOf(value_4));
+            object.put("value_5", String.valueOf(value_5));
+            object.put("value_6", String.valueOf(value_6));
+            object.put("value_7", String.valueOf(value_7));
+            object.put("value_8", String.valueOf(value_8));
+            object.put("value_9", String.valueOf(value_9));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        System.out.println(object);
+    }
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -151,6 +184,16 @@ public class MyActivity2 extends Activity {
         final EditText closeHour = (EditText) findViewById(R.id.editText_HourClose);
         final Button open_button = (Button)findViewById(R.id.open_blind_button);
         final Button close_button = (Button)findViewById(R.id.close_blind_button);
+
+        final SeekBar seekBar1 = (SeekBar)findViewById(R.id.seekBar1);
+        final SeekBar seekBar2 = (SeekBar)findViewById(R.id.seekBar2);
+        final SeekBar seekBar3 = (SeekBar)findViewById(R.id.seekBar3);
+        final SeekBar seekBar4 = (SeekBar)findViewById(R.id.seekBar4);
+        final SeekBar seekBar5 = (SeekBar)findViewById(R.id.seekBar5);
+        final SeekBar seekBar6 = (SeekBar)findViewById(R.id.seekBar6);
+        final SeekBar seekBar7 = (SeekBar)findViewById(R.id.seekBar7);
+        final SeekBar seekBar8 = (SeekBar)findViewById(R.id.seekBar8);
+        final SeekBar seekBar9 = (SeekBar)findViewById(R.id.seekBar9);
 
         textLabel.setText(room_name);
 
@@ -242,13 +285,14 @@ public class MyActivity2 extends Activity {
                 writeJSON_Hour(id_room, openHour.getText().toString(), closeHour.getText().toString());
                 message = object.toString();
 
-                printwriter.write(message); //write the message to output stream
-                printwriter.flush();
+                //printwriter.write(message); //write the message to output stream
+                //printwriter.flush();
 
                 openHour.setEnabled(true);
                 closeHour.setEnabled(true);
             }
         });
+
 
         open_button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -275,6 +319,17 @@ public class MyActivity2 extends Activity {
 
                 open_button.setEnabled(true);
                 close_button.setEnabled(false);
+            }
+        });
+
+        radioButton_Profile.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                writeJSON_Profile(id_room, seekBar1.getProgress(), seekBar2.getProgress(), seekBar3.getProgress(), seekBar4.getProgress(),
+                        seekBar5.getProgress(), seekBar6.getProgress(), seekBar7.getProgress(),seekBar8.getProgress(),
+                        seekBar9.getProgress());
+
+                openHour.setEnabled(false);
+                closeHour.setEnabled(false);
             }
         });
     }
