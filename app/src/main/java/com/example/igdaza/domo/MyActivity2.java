@@ -3,8 +3,6 @@ package com.example.igdaza.domo;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -14,7 +12,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.RadioButton;
 import android.widget.SeekBar;
-import android.widget.SeekBar.OnSeekBarChangeListener;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -33,7 +30,6 @@ public class MyActivity2 extends Activity {
     private JSONObject object;
     private JSONObject object_recv;
     private String message;
-    private String response;
 
     private PrintWriter printwriter;
     private BufferedReader bufferedReader;
@@ -50,8 +46,6 @@ public class MyActivity2 extends Activity {
             object.put("Auto", "False");
             object.put("AutoSolar", "False");
             object.put("AutoProfile", "False");
-            object.put("ProfileName", "None");
-            object.put("ProfileIndex", "None");
             object.put("OpenBlind", open_state);
             object.put("CloseBlind", close_state);
 
@@ -74,8 +68,6 @@ public class MyActivity2 extends Activity {
             object.put("Auto", "False");
             object.put("AutoSolar", "False");
             object.put("AutoProfile", "False");
-            object.put("ProfileName", "None");
-            object.put("ProfileIndex", "None");
             object.put("OpenBlind", "False");
             object.put("CloseBlind", "False");
 
@@ -98,8 +90,6 @@ public class MyActivity2 extends Activity {
             object.put("Auto", "False");
             object.put("AutoSolar", "True");
             object.put("AutoProfile", "False");
-            object.put("ProfileName", "None");
-            object.put("ProfileIndex", "None");
             object.put("OpenBlind", "False");
             object.put("CloseBlind", "False");
         } catch (JSONException e) {
@@ -119,8 +109,6 @@ public class MyActivity2 extends Activity {
             object.put("Auto", "True");
             object.put("AutoSolar", "False");
             object.put("AutoProfile", "False");
-            object.put("ProfileName", "None");
-            object.put("ProfileIndex", "None");
             object.put("OpenBlind", "False");
             object.put("CloseBlind", "False");
         } catch (JSONException e) {
@@ -138,11 +126,9 @@ public class MyActivity2 extends Activity {
             object.put("Status", "Not deffined");
             object.put("TimeOpen", "NO_HOUR");
             object.put("TimeClose", "NO_HOUR");
-            object.put("Auto", "True");
+            object.put("Auto", "False");
             object.put("AutoSolar", "False");
-            object.put("AutoProfile", "False");
-            object.put("ProfileName", "None");
-            object.put("ProfileIndex", "None");
+            object.put("AutoProfile", "True");
             object.put("OpenBlind", "False");
             object.put("CloseBlind", "False");
             object.put("value_1", String.valueOf(value_1));
@@ -240,6 +226,16 @@ public class MyActivity2 extends Activity {
                         radioButton_Profile.setChecked(true);
                         openHour.setEnabled(false);
                         closeHour.setEnabled(false);
+
+                        seekBar1.setProgress(object_recv.getInt("value_1"));
+                        seekBar2.setProgress(object_recv.getInt("value_2"));
+                        seekBar3.setProgress(object_recv.getInt("value_3"));
+                        seekBar4.setProgress(object_recv.getInt("value_4"));
+                        seekBar5.setProgress(object_recv.getInt("value_5"));
+                        seekBar6.setProgress(object_recv.getInt("value_6"));
+                        seekBar7.setProgress(object_recv.getInt("value_7"));
+                        seekBar8.setProgress(object_recv.getInt("value_8"));
+                        seekBar9.setProgress(object_recv.getInt("value_9"));
                     }
 
                     if (object_recv.getString("Status").equals("OPEN"))
@@ -285,14 +281,28 @@ public class MyActivity2 extends Activity {
                 writeJSON_Hour(id_room, openHour.getText().toString(), closeHour.getText().toString());
                 message = object.toString();
 
-                //printwriter.write(message); //write the message to output stream
-                //printwriter.flush();
+                printwriter.write(message); //write the message to output stream
+                printwriter.flush();
 
                 openHour.setEnabled(true);
                 closeHour.setEnabled(true);
             }
         });
 
+        radioButton_Profile.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                writeJSON_Profile(id_room, seekBar1.getProgress(), seekBar2.getProgress(), seekBar3.getProgress(), seekBar4.getProgress(),
+                        seekBar5.getProgress(), seekBar6.getProgress(), seekBar7.getProgress(),seekBar8.getProgress(),
+                        seekBar9.getProgress());
+                message = object.toString();
+
+                printwriter.write(message); //write the message to output stream
+                printwriter.flush();
+
+                openHour.setEnabled(false);
+                closeHour.setEnabled(false);
+            }
+        });
 
         open_button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -322,16 +332,7 @@ public class MyActivity2 extends Activity {
             }
         });
 
-        radioButton_Profile.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                writeJSON_Profile(id_room, seekBar1.getProgress(), seekBar2.getProgress(), seekBar3.getProgress(), seekBar4.getProgress(),
-                        seekBar5.getProgress(), seekBar6.getProgress(), seekBar7.getProgress(),seekBar8.getProgress(),
-                        seekBar9.getProgress());
 
-                openHour.setEnabled(false);
-                closeHour.setEnabled(false);
-            }
-        });
     }
 
     @Override
