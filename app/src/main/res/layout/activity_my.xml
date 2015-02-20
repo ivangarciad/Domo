@@ -1,88 +1,41 @@
-<TableLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:background="@drawable/wallpaper"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
 
-    <TableRow
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"></TableRow>
-
-    <TableRow
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
-
         <Button
             android:id="@+id/cocina_button"
-            android:layout_width="wrap_content"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:layout_column="1"
-            android:text="Caldera" />
-    </TableRow>
-
-    <TableRow
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"></TableRow>
-
-    <TableRow
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
+            android:layout_marginLeft="80dp"
+            android:layout_marginTop="10dp"
+            android:text="Caldera"/>
 
         <Button
             android:id="@+id/salon_button"
-            android:layout_width="wrap_content"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:layout_column="1"
-            android:text="Salon" />
-    </TableRow>
-
-    <TableRow
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"></TableRow>
-
-    <TableRow
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
+            android:layout_marginLeft="80dp"
+            android:layout_marginTop="40dp"
+            android:text="Salón"
+            android:layout_below="@+id/cocina_button"/>
 
         <Button
             android:id="@+id/estudio"
-            android:layout_width="wrap_content"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:layout_column="1"
-            android:text="Estudio" />
-    </TableRow>
-
-    <TableRow
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"></TableRow>
-
-    <TableRow
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"></TableRow>
-
-    <TableRow
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"></TableRow>
-
-    <TableRow
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"></TableRow>
-
-    <TableRow
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
-
-    </TableRow>
-
-    <TableRow
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
+            android:layout_marginLeft="80dp"
+            android:layout_marginTop="2dp"
+            android:text="Estudio"
+            android:layout_below="@+id/salon_button"/>
 
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="80dp"
+            android:layout_marginTop="2dp"
             android:text="Cocina"
             android:id="@+id/button"
-            android:layout_column="1" />
-    </TableRow>
-</TableLayout>
+            android:layout_below="@+id/estudio"/>
+
+</RelativeLayout>
