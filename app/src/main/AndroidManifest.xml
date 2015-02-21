@@ -2,15 +2,16 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.igdaza.domo" >
 
+    <uses-permission android:name="android.permission.INTERNET" >
+    </uses-permission>
 
-     <uses-permission android:name="android.permission.INTERNET" >
-     </uses-permission>
+    <uses-sdk android:minSdkVersion="11" />
 
     <application
+        android:name=".MyApplication"
         android:allowBackup="true"
         android:icon="@drawable/ecsd_logo"
         android:label="ECDS Sistemas Inteligentes"
-        android:name=".MyApplication"
         android:theme="@style/AppTheme" >
         android:
         <activity
@@ -24,6 +25,10 @@
         </activity>
         <activity
             android:name=".MyActivity2"
+            android:label="ECDS Sistemas Inteligentes" >
+        </activity>
+        <activity
+            android:name=".MyActivity3"
             android:label="ECDS Sistemas Inteligentes" >
         </activity>
     </application>
