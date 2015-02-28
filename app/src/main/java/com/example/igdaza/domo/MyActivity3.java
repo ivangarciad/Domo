@@ -54,13 +54,15 @@ public class MyActivity3 extends Activity {
         final EditText IP_address_edit_text = (EditText) findViewById(R.id.editText_serverIP);
         String IP_address = IP_address_edit_text.getText().toString();
 
-        try {
-            FileOutputStream outputStream = openFileOutput(file_name, Context.MODE_PRIVATE);
-            outputStream.write(IP_address.getBytes());
-            outputStream.close();
-        } catch (Exception e) {
-            e.printStackTrace();
+        if (!IP_address.isEmpty()) {
+            try {
+                FileOutputStream outputStream = openFileOutput(file_name, Context.MODE_PRIVATE);
+                outputStream.write(IP_address.getBytes());
+                outputStream.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            Log.d("IP_address", IP_address);
         }
-        Log.d("IP_address", IP_address);
     }
 }

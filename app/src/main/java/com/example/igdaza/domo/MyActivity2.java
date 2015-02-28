@@ -21,6 +21,7 @@ import java.io.CharArrayWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import android.widget.CheckBox;
 
 
 public class MyActivity2 extends Activity {
@@ -118,7 +119,8 @@ public class MyActivity2 extends Activity {
     }
 
     public void  writeJSON_Profile(String id_habitacion, int value_1, int value_2, int value_3, int value_4, int value_5, int value_6,
-                                   int value_7, int value_8, int value_9) {
+                                   int value_7, int value_8, int value_9, boolean monday, boolean thusday, boolean wendsday,
+                                   boolean thursday, boolean friday, boolean saterday, boolean sunday) {
         object = new JSONObject();
         try {
             object.put("Name", id_habitacion);
@@ -140,6 +142,13 @@ public class MyActivity2 extends Activity {
             object.put("value_7", String.valueOf(value_7));
             object.put("value_8", String.valueOf(value_8));
             object.put("value_9", String.valueOf(value_9));
+            object.put("monday",  String.valueOf(monday));
+            object.put("thusday", String.valueOf(thusday));
+            object.put("wendsday",String.valueOf(wendsday));
+            object.put("thursday",String.valueOf(thursday));
+            object.put("friday",  String.valueOf(friday));
+            object.put("saterday",String.valueOf(saterday));
+            object.put("sunday",  String.valueOf(sunday));
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -180,6 +189,14 @@ public class MyActivity2 extends Activity {
         final SeekBar seekBar7 = (SeekBar)findViewById(R.id.seekBar7);
         final SeekBar seekBar8 = (SeekBar)findViewById(R.id.seekBar8);
         final SeekBar seekBar9 = (SeekBar)findViewById(R.id.seekBar9);
+
+        final CheckBox monday = (CheckBox) findViewById(R.id.checkBox_monday);
+        final CheckBox thusday = (CheckBox) findViewById(R.id.checkBox_thusday);
+        final CheckBox wendsday = (CheckBox) findViewById(R.id.checkBox_wendsday);
+        final CheckBox thursday = (CheckBox) findViewById(R.id.checkBox_thursday);
+        final CheckBox friday = (CheckBox) findViewById(R.id.checkBox_friday);
+        final CheckBox saterday = (CheckBox) findViewById(R.id.checkBox_saterday);
+        final CheckBox sunday = (CheckBox) findViewById(R.id.checkBox_sunday);
 
         textLabel.setText(room_name);
 
@@ -236,6 +253,16 @@ public class MyActivity2 extends Activity {
                         seekBar7.setProgress(object_recv.getInt("value_7"));
                         seekBar8.setProgress(object_recv.getInt("value_8"));
                         seekBar9.setProgress(object_recv.getInt("value_9"));
+
+
+
+                        monday.setChecked(Boolean.valueOf(object_recv.getString("Mon")));
+                        thusday.setChecked(Boolean.valueOf(object_recv.getString("Tue")));
+                        wendsday.setChecked(Boolean.valueOf(object_recv.getString("Wed")));
+                        thursday.setChecked(Boolean.valueOf(object_recv.getString("Thu")));
+                        friday.setChecked(Boolean.valueOf(object_recv.getString("Fri")));
+                        saterday.setChecked(Boolean.valueOf(object_recv.getString("Sat")));
+                        sunday.setChecked(Boolean.valueOf(object_recv.getString("Sun")));
                     }
 
                     if (object_recv.getString("Status").equals("OPEN"))
@@ -293,7 +320,8 @@ public class MyActivity2 extends Activity {
             public void onClick(View v) {
                 writeJSON_Profile(id_room, seekBar1.getProgress(), seekBar2.getProgress(), seekBar3.getProgress(), seekBar4.getProgress(),
                         seekBar5.getProgress(), seekBar6.getProgress(), seekBar7.getProgress(),seekBar8.getProgress(),
-                        seekBar9.getProgress());
+                        seekBar9.getProgress(), monday.isChecked(), thusday.isChecked(), wendsday.isChecked(), thursday.isChecked(),
+                        friday.isChecked(), saterday.isChecked(), sunday.isChecked());
                 message = object.toString();
 
                 printwriter.write(message); //write the message to output stream
