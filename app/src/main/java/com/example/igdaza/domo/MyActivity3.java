@@ -13,20 +13,35 @@ import android.util.Log;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-
+import java.io.IOException;
 
 
 public class MyActivity3 extends Activity {
 
     String file_name = "";
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_activity3);
+        final EditText IP_address_edit_text = (EditText) findViewById(R.id.editText_serverIP);
+
+        String temp="";
+        int c;
 
         Intent intent = getIntent();
         file_name = intent.getStringExtra("file_name");
+        try {
+            Log.d("FILE-READ", file_name);
+            FileInputStream file = openFileInput(file_name);
+            while( (c = file.read()) != -1){
+                temp = temp + Character.toString((char)c);
+            }
+            IP_address_edit_text.setText(temp);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -51,7 +66,9 @@ public class MyActivity3 extends Activity {
     @Override
     protected void onStop() {
         super.onStop();  // Always call the superclass method first
+
         final EditText IP_address_edit_text = (EditText) findViewById(R.id.editText_serverIP);
+
         String IP_address = IP_address_edit_text.getText().toString();
 
         if (!IP_address.isEmpty()) {

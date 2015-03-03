@@ -55,7 +55,6 @@ public class MyActivity extends Activity {
         Runnable runnable = new Runnable(){
             public void run() {
                 try {
-                    String ip_name;
                     Log.d("FILE-CONTENT_IN THREAD", temp);
                     client = new Socket(temp, 5000);
                     printwriter = new PrintWriter(client.getOutputStream());
@@ -66,10 +65,10 @@ public class MyActivity extends Activity {
                     myApp.setMyApplicationPrintReader(reader);
 
                 } catch (UnknownHostException e) {
-                    System.err.println("Unknown Host.");
+                    //System.err.println("Unknown Host.");
                 } catch (IOException e) {
-                    System.err.println("Couldn't get I/O for the connection.");
-                    System.err.println(e);
+                    //System.err.println("Couldn't get I/O for the connection.");
+                    //System.err.println(e);
                 }
             }
         };
@@ -152,8 +151,8 @@ public class MyActivity extends Activity {
             client.close();
             socketThread.interrupt();
         } catch (IOException e) {
-            System.err.println("Exit button exception.");
-            System.err.println(e);
+            //System.err.println("Exit button exception.");
+            //System.err.println(e);
         }
     }
 }
