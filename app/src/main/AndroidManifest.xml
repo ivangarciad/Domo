@@ -15,13 +15,17 @@
         android:theme="@style/AppTheme" >
         android:
         <activity
-            android:name=".MyActivity"
+            android:name=".activity_main"
             android:label="ECDS Sistemas Inteligentes" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".MyActivity"
+            android:label="ECDS Sistemas Inteligentes" >
         </activity>
         <activity
             android:name=".MyActivity2"

@@ -22,7 +22,8 @@ public class MyActivity3 extends Activity {
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_activity3);
         final EditText IP_address_edit_text = (EditText) findViewById(R.id.editText_serverIP);

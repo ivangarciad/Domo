@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:background="@drawable/wallpaper"
@@ -6,30 +7,29 @@
     android:layout_marginTop="40dp">
 
         <Button
-            android:id="@+id/salon_button"
+            android:id="@+id/sector_1"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="80dp"
             android:layout_marginTop="10dp"
-            android:text="Salón"
-            android:layout_below="@+id/cocina_button"/>
+            android:text="Sector 1"/>
 
         <Button
-            android:id="@+id/estudio"
+            android:id="@+id/sector_2"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="80dp"
             android:layout_marginTop="2dp"
-            android:text="Estudio"
-            android:layout_below="@+id/salon_button"/>
+            android:text="Sector 2"
+            android:layout_below="@+id/sector_1"/>
 
         <Button
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="80dp"
             android:layout_marginTop="2dp"
-            android:text="Cocina"
-            android:id="@+id/button"
-            android:layout_below="@+id/estudio"/>
+            android:text="Sector 3"
+            android:id="@+id/sector_3"
+            android:layout_below="@+id/sector_2"/>
 
 </RelativeLayout>

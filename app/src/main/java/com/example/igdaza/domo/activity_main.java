@@ -1,33 +1,30 @@
 package com.example.igdaza.domo;
 
-import android.app.Activity;
+/**
+ * Created by igdaza on 4/03/15.
+ */
 
+import android.app.Activity;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-
-import java.net.*;
-import java.io.*;
-import java.lang.Thread;
-
-import android.content.Context;
 import android.widget.TabHost;
 
-import java.io.FileOutputStream;
+import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.net.Socket;
+import java.net.UnknownHostException;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
-public class MyActivity extends Activity {
-    //private TextView output;
+public class activity_main extends Activity
+{
+    private TabHost mTabHost;
     private Socket client;
     private PrintWriter printwriter;
     private BufferedReader reader;
@@ -41,13 +38,31 @@ public class MyActivity extends Activity {
     {
         super.onCreate(savedInstanceState);
 
+        setContentView(R.layout.activity_main);
+        mTabHost =(TabHost) findViewById(R.id.tabHost);
+        mTabHost.setup();
+
+        // Adding tabs
+        TabHost.TabSpec tab0 = mTabHost.newTabSpec("tab_creation");
+        //tab0.setIndicator("TAB1").setContent(new Intent(this, MyActivity2.class));
+		tab0.setIndicator("Persianas", getResources().getDrawable(android.R.drawable.ic_menu_add));
+		tab0.setContent(R.id.tab0);
+        mTabHost.addTab(tab0);
+
+        // Adding tabs
+        TabHost.TabSpec tab1 = mTabHost.newTabSpec("tab_creation");
+        tab1.setIndicator("Riego", getResources().getDrawable(android.R.drawable.ic_menu_add));
+        tab1.setContent(R.id.tab1);
+        mTabHost.addTab(tab1);
+
+        // Adding tabs
+        TabHost.TabSpec tab2 = mTabHost.newTabSpec("tab_creation");
+        tab2.setIndicator("Clima", getResources().getDrawable(android.R.drawable.ic_menu_add));
+        tab2.setContent(R.id.tab2);
+        mTabHost.addTab(tab2);
+
         //String string = "192.168.0.100";
-
         try {
-            //FileOutputStream outputStream = openFileOutput(filename, Context.MODE_PRIVATE);
-            //outputStream.write(string.getBytes());
-            //outputStream.close();
-
             FileInputStream fin = openFileInput(filename);
             int c;
             while( (c = fin.read()) != -1){
@@ -82,19 +97,18 @@ public class MyActivity extends Activity {
         socketThread = new Thread(runnable, "SocketThread");
         socketThread.start();
 
-        /*Resources res = getResources();
-        //setContentView(R.layout.activity_my);
-
-
         final Button button_cocina = (Button)findViewById(R.id.cocina_button);
         final Button button_salon = (Button)findViewById(R.id.salon_button);
         final Button button_estudio = (Button)findViewById(R.id.estudio);
+        final Button sector_1 = (Button)findViewById(R.id.sector_1);
+        final Button sector_2 = (Button)findViewById(R.id.sector_2);
+        final Button sector_3 = (Button)findViewById(R.id.sector_3);
 
         button_cocina.setOnClickListener(new View.OnClickListener()
         {
             public void onClick(View v)
             {
-                Intent intent = new Intent(MyActivity.this, MyActivity2.class);
+                Intent intent = new Intent(activity_main.this, MyActivity2.class);
                 intent.putExtra("id_room", "ID_HABITACION_1");
                 intent.putExtra("room_name", "Caldera");
                 startActivity(intent);
@@ -105,7 +119,7 @@ public class MyActivity extends Activity {
         {
             public void onClick(View v)
             {
-                Intent intent = new Intent(MyActivity.this, MyActivity2.class);
+                Intent intent = new Intent(activity_main.this, MyActivity2.class);
                 intent.putExtra("id_room", "ID_HABITACION_7");
                 intent.putExtra("room_name", "Salón");
                 startActivity(intent);
@@ -116,30 +130,22 @@ public class MyActivity extends Activity {
         {
             public void onClick(View v)
             {
-                Intent intent = new Intent(MyActivity.this, MyActivity2.class);
+                Intent intent = new Intent(activity_main.this, MyActivity2.class);
                 intent.putExtra("id_room", "ID_HABITACION_8");
                 intent.putExtra("room_name", "Estudio");
                 startActivity(intent);
             }
-        });*/
+        });
+
     }
 
-    /*@Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.activity_my, container, false);
-        //TextView tv = (TextView) v.findViewById(R.id.text);
-        //tv.setText(this.getTag() + " Content");
-        return v;
-    }
-
-    /*@Override
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         Log.d("CreateOptionsMenu", "Menu");
-        //getMenuInflater().inflate(R.menu.my, menu);
+        getMenuInflater().inflate(R.menu.my, menu);
         return super.onCreateOptionsMenu(menu);
-    }*/
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -150,9 +156,9 @@ public class MyActivity extends Activity {
         int id = item.getItemId();
         if (id == R.id.action_settings) {
             // Setting activity must be called.
-            /*Intent intent = new Intent(MyActivity.this, MyActivity3.class);
+            Intent intent = new Intent(activity_main.this, MyActivity3.class);
             intent.putExtra("file_name", filename);
-            startActivity(intent);*/
+            startActivity(intent);
             return true;
         }
         return super.onOptionsItemSelected(item);

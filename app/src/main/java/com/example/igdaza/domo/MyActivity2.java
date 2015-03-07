@@ -26,8 +26,6 @@ import android.widget.CheckBox;
 
 public class MyActivity2 extends Activity {
 
-
-
     private JSONObject object;
     private JSONObject object_recv;
     private String message;
