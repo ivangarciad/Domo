@@ -28,8 +28,13 @@ public class activity_main extends Activity
     private Socket client;
     private PrintWriter printwriter;
     private BufferedReader reader;
-
     private Thread socketThread;
+
+    private Socket client_riego;
+    private PrintWriter printwriter_riego;
+    private BufferedReader reader_riego;
+    private Thread socketThread_riego;
+
     private String filename = "ip_host.txt";
     private String temp="";
 
@@ -94,8 +99,31 @@ public class activity_main extends Activity
             }
         };
 
+        Runnable runnable_riego = new Runnable(){
+            public void run() {
+                try {
+                    Log.d("FILE-CONTENT_IN THREAD RIEGO", temp);
+                    client_riego = new Socket(temp, 5001);
+                    printwriter_riego = new PrintWriter(client_riego.getOutputStream());
+                    reader_riego = new BufferedReader(new InputStreamReader(client_riego.getInputStream()));
+
+                    MyApplication myApp_riego = (MyApplication)getApplication();
+                    myApp_riego.setMyApplicationPrintWriterRiego(printwriter_riego);
+                    myApp_riego.setMyApplicationPrintReaderRiego(reader_riego);
+
+                } catch (UnknownHostException e) {
+                    //System.err.println("Unknown Host.");
+                } catch (IOException e) {
+                    //System.err.println("Couldn't get I/O for the connection.");
+                    //System.err.println(e);
+                }
+            }
+        };
+
         socketThread = new Thread(runnable, "SocketThread");
         socketThread.start();
+        socketThread_riego = new Thread(runnable_riego, "SocketThreadRiego");
+        socketThread_riego.start();
 
         final Button button_cocina = (Button)findViewById(R.id.cocina_button);
         final Button button_salon = (Button)findViewById(R.id.salon_button);
@@ -148,7 +176,7 @@ public class activity_main extends Activity
             public void onClick(View v)
             {
                 Intent intent = new Intent(activity_main.this, riego_activity.class);
-                intent.putExtra("id_sector", "ID_HABITACION_1");
+                intent.putExtra("id_sector", "ID_SECTOR_1");
                 intent.putExtra("sector_name", "Sector 1");
                 startActivity(intent);
             }
@@ -159,7 +187,7 @@ public class activity_main extends Activity
             public void onClick(View v)
             {
                 Intent intent = new Intent(activity_main.this, riego_activity.class);
-                intent.putExtra("id_sector", "ID_HABITACION_1");
+                intent.putExtra("id_sector", "ID_SECTOR_2");
                 intent.putExtra("sector_name", "Sector 2");
                 startActivity(intent);
             }
@@ -170,7 +198,7 @@ public class activity_main extends Activity
             public void onClick(View v)
             {
                 Intent intent = new Intent(activity_main.this, riego_activity.class);
-                intent.putExtra("id_sector", "ID_HABITACION_1");
+                intent.putExtra("id_sector", "ID_SECTOR_3");
                 intent.putExtra("sector_name", "Sector 3");
                 startActivity(intent);
             }
@@ -181,7 +209,7 @@ public class activity_main extends Activity
             public void onClick(View v)
             {
                 Intent intent = new Intent(activity_main.this, riego_activity.class);
-                intent.putExtra("id_sector", "ID_HABITACION_1");
+                intent.putExtra("id_sector", "ID_SECTOR_7");
                 intent.putExtra("sector_name", "Sector 7");
                 startActivity(intent);
             }
@@ -222,6 +250,10 @@ public class activity_main extends Activity
             reader.close();
             client.close();
             socketThread.interrupt();
+            printwriter_riego.close();
+            reader_riego.close();
+            client_riego.close();
+            socketThread_riego.interrupt();
         } catch (IOException e) {
             //System.err.println("Exit button exception.");
             //System.err.println(e);

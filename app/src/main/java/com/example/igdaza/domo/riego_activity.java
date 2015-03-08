@@ -44,8 +44,8 @@ public class riego_activity extends Activity {
             object.put("Name",        id_habitacion);
             object.put("GetStatus",   "False");
             object.put("Status",      "Not deffined");
-            object.put("TimeOpen",    startHour);
-            object.put("TimeClose",   stopHour);
+            object.put("TimeStart",   startHour);
+            object.put("TimeStop",    stopHour);
             object.put("OnOff",       on_off);
             object.put("Auto",        auto);
             object.put("AutoProfile", autoProfile);
@@ -63,8 +63,8 @@ public class riego_activity extends Activity {
             object.put("Name",        id_sector);
             object.put("GetStatus",   "True");
             object.put("Status",      "Not deffined");
-            object.put("TimeOpen",    "None");
-            object.put("TimeClose",   "None");
+            object.put("TimeStart",   "None");
+            object.put("TimeStop",    "None");
             object.put("OnOff",       "False");
             object.put("Auto",        "False");
             object.put("AutoProfile", "False");
@@ -84,26 +84,26 @@ public class riego_activity extends Activity {
             object.put("Name",        id_sector);
             object.put("GetStatus",   "False");
             object.put("Status",      "Not deffined");
-            object.put("TimeOpen",    "None");
-            object.put("TimeClose",   "None");
+            object.put("TimeStart",   "None");
+            object.put("TimeStop",    "None");
             object.put("OnOff",       "None");
             object.put("Auto",        "False");
             object.put("AutoProfile", "True");
             object.put("StartSector", "None");
             object.put("StopSector",  "None");
-            object.put("value_1", String.valueOf(value_1));
-            object.put("value_2", String.valueOf(value_2));
-            object.put("value_3", String.valueOf(value_3));
-            object.put("value_4", String.valueOf(value_4));
-            object.put("value_5", String.valueOf(value_5));
-            object.put("value_6", String.valueOf(value_6));
-            object.put("monday",  String.valueOf(monday));
-            object.put("thusday", String.valueOf(thusday));
-            object.put("wendsday",String.valueOf(wendsday));
-            object.put("thursday",String.valueOf(thursday));
-            object.put("friday",  String.valueOf(friday));
-            object.put("saterday",String.valueOf(saterday));
-            object.put("sunday",  String.valueOf(sunday));
+            object.put("value_round_1", String.valueOf(value_1));
+            object.put("value_round_2", String.valueOf(value_2));
+            object.put("value_round_3", String.valueOf(value_3));
+            object.put("value_round_4", String.valueOf(value_4));
+            object.put("value_round_5", String.valueOf(value_5));
+            object.put("value_round_6", String.valueOf(value_6));
+            object.put("Mon",     String.valueOf(monday));
+            object.put("Tue",     String.valueOf(thusday));
+            object.put("Wed",     String.valueOf(wendsday));
+            object.put("Thu",     String.valueOf(thursday));
+            object.put("Fri",     String.valueOf(friday));
+            object.put("Sat",     String.valueOf(saterday));
+            object.put("Sun",     String.valueOf(sunday));
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -116,9 +116,9 @@ public class riego_activity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sector);
 
-        MyApplication myApp = (MyApplication)getApplication();
-        printwriter = myApp.getMyApplicationPrintWriter();
-        bufferedReader = myApp.getMyApplicationPrintReader();
+        MyApplication myApp_riego = (MyApplication)getApplication();
+        printwriter = myApp_riego.getMyApplicationPrintWriterRiego();
+        bufferedReader = myApp_riego.getMyApplicationPrintReaderRiego();
 
         Intent intent = getIntent();
         final String id_sector = intent.getStringExtra("id_sector");
@@ -183,23 +183,25 @@ public class riego_activity extends Activity {
 
                     on_off.setChecked(Boolean.valueOf(object_recv.getString("OnOff")));
 
-                    if (object_recv.getString("Auto").equals("True")) {
+                    if (object_recv.getString("Auto").equals("True"))
+                    {
                         radioButton_Hour.setChecked(true);
-                        openHour.setText(object_recv.getString("TimeOpen"));
-                        closeHour.setText(object_recv.getString("TimeClose"));
+                        openHour.setText(object_recv.getString("TimeStart"));
+                        closeHour.setText(object_recv.getString("TimeStop"));
                     }
 
-                    if (object_recv.getString("AutoProfile").equals("True")) {
+                    if (object_recv.getString("AutoProfile").equals("True"))
+                    {
                         radioButton_Profile.setChecked(true);
                         openHour.setEnabled(false);
                         closeHour.setEnabled(false);
 
-                        seekBar1.setProgress(object_recv.getInt("value_1"));
-                        seekBar2.setProgress(object_recv.getInt("value_2"));
-                        seekBar3.setProgress(object_recv.getInt("value_3"));
-                        seekBar4.setProgress(object_recv.getInt("value_4"));
-                        seekBar5.setProgress(object_recv.getInt("value_5"));
-                        seekBar6.setProgress(object_recv.getInt("value_6"));
+                        seekBar1.setProgress(object_recv.getInt("value_round_1"));
+                        seekBar2.setProgress(object_recv.getInt("value_round_2"));
+                        seekBar3.setProgress(object_recv.getInt("value_round_3"));
+                        seekBar4.setProgress(object_recv.getInt("value_round_4"));
+                        seekBar5.setProgress(object_recv.getInt("value_round_5"));
+                        seekBar6.setProgress(object_recv.getInt("value_round_6"));
 
                         monday.setChecked(Boolean.valueOf(object_recv.getString("Mon")));
                         thusday.setChecked(Boolean.valueOf(object_recv.getString("Tue")));
@@ -313,6 +315,5 @@ public class riego_activity extends Activity {
                 stop_button.setEnabled(false);
             }
         });
-
     }
 }

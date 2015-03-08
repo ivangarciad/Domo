@@ -9,6 +9,8 @@ import java.io.PrintWriter;
 public class MyApplication extends Application {
     private PrintWriter printwriter;
     private BufferedReader streamReader;
+    private PrintWriter printwriter_riego;
+    private BufferedReader streamReader_riego;
 
     public PrintWriter getMyApplicationPrintWriter(){
         return printwriter;
@@ -24,5 +26,21 @@ public class MyApplication extends Application {
 
     public void setMyApplicationPrintReader(BufferedReader input){
         this.streamReader = input;
+    }
+
+    public PrintWriter getMyApplicationPrintWriterRiego(){
+        return printwriter_riego;
+    }
+
+    public void setMyApplicationPrintWriterRiego(PrintWriter input){
+        this.printwriter_riego = input;
+    }
+
+    public BufferedReader getMyApplicationPrintReaderRiego(){
+        return streamReader_riego;
+    }
+
+    public void setMyApplicationPrintReaderRiego(BufferedReader input){
+        this.streamReader_riego = input;
     }
 }
