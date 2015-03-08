@@ -103,7 +103,12 @@ public class activity_main extends Activity
         final Button sector_1 = (Button)findViewById(R.id.sector_1);
         final Button sector_2 = (Button)findViewById(R.id.sector_2);
         final Button sector_3 = (Button)findViewById(R.id.sector_3);
+        final Button sector_4 = (Button)findViewById(R.id.sector_4);
+        final Button sector_5 = (Button)findViewById(R.id.sector_5);
+        final Button sector_6 = (Button)findViewById(R.id.sector_6);
+        final Button sector_7 = (Button)findViewById(R.id.sector_7);
 
+        // Blind
         button_cocina.setOnClickListener(new View.OnClickListener()
         {
             public void onClick(View v)
@@ -133,6 +138,51 @@ public class activity_main extends Activity
                 Intent intent = new Intent(activity_main.this, MyActivity2.class);
                 intent.putExtra("id_room", "ID_HABITACION_8");
                 intent.putExtra("room_name", "Estudio");
+                startActivity(intent);
+            }
+        });
+
+        //Riego Sector
+        sector_1.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(activity_main.this, riego_activity.class);
+                intent.putExtra("id_sector", "ID_HABITACION_1");
+                intent.putExtra("sector_name", "Sector 1");
+                startActivity(intent);
+            }
+        });
+
+        sector_2.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(activity_main.this, riego_activity.class);
+                intent.putExtra("id_sector", "ID_HABITACION_1");
+                intent.putExtra("sector_name", "Sector 2");
+                startActivity(intent);
+            }
+        });
+
+        sector_3.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(activity_main.this, riego_activity.class);
+                intent.putExtra("id_sector", "ID_HABITACION_1");
+                intent.putExtra("sector_name", "Sector 3");
+                startActivity(intent);
+            }
+        });
+
+        sector_7.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(activity_main.this, riego_activity.class);
+                intent.putExtra("id_sector", "ID_HABITACION_1");
+                intent.putExtra("sector_name", "Sector 7");
                 startActivity(intent);
             }
         });

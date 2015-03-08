@@ -11,12 +11,12 @@
         android:name=".MyApplication"
         android:allowBackup="true"
         android:icon="@drawable/ecsd_logo"
-        android:label="ECDS Sistemas Inteligentes"
+        android:label="ECSD Sistemas Inteligentes"
         android:theme="@style/AppTheme" >
         android:
         <activity
             android:name=".activity_main"
-            android:label="ECDS Sistemas Inteligentes" >
+            android:label="ECSD Sistemas Inteligentes" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -25,14 +25,18 @@
         </activity>
         <activity
             android:name=".MyActivity"
-            android:label="ECDS Sistemas Inteligentes" >
+            android:label="ECSD Sistemas Inteligentes" >
         </activity>
         <activity
             android:name=".MyActivity2"
-            android:label="ECDS Sistemas Inteligentes" >
+            android:label="ECSD Sistemas Inteligentes" >
         </activity>
         <activity
             android:name=".MyActivity3"
+            android:label="ECSD Sistemas Inteligentes" >
+        </activity>
+        <activity
+            android:name=".riego_activity"
             android:label="ECDS Sistemas Inteligentes" >
         </activity>
     </application>

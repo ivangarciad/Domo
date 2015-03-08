@@ -32,4 +32,40 @@
             android:id="@+id/sector_3"
             android:layout_below="@+id/sector_2"/>
 
+        <Button
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="80dp"
+            android:layout_marginTop="2dp"
+            android:text="Sector 4"
+            android:id="@+id/sector_4"
+            android:layout_below="@+id/sector_3"/>
+
+    <Button
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="80dp"
+        android:layout_marginTop="2dp"
+        android:text="Sector 5"
+        android:id="@+id/sector_5"
+        android:layout_below="@+id/sector_4"/>
+
+    <Button
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="80dp"
+        android:layout_marginTop="2dp"
+        android:text="Sector 6"
+        android:id="@+id/sector_6"
+        android:layout_below="@+id/sector_5"/>
+
+    <Button
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="80dp"
+        android:layout_marginTop="2dp"
+        android:text="Sector 7"
+        android:id="@+id/sector_7"
+        android:layout_below="@+id/sector_6"/>
+
 </RelativeLayout>
