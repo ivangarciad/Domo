@@ -82,7 +82,7 @@ public class activity_main extends Activity
             public void run() {
                 try {
                     Log.d("FILE-CONTENT_IN THREAD", temp);
-                    client = new Socket(temp, 5000);
+                    client = new Socket(temp, 5002);
                     printwriter = new PrintWriter(client.getOutputStream());
                     reader = new BufferedReader(new InputStreamReader(client.getInputStream()));
 

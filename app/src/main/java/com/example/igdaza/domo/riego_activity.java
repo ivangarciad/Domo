@@ -110,7 +110,6 @@ public class riego_activity extends Activity {
         System.out.println(object);
     }
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -154,11 +153,6 @@ public class riego_activity extends Activity {
 
         textLabel.setText(sector_name);
 
-        // Petición de estado del blind al servidor
-        writeJSON_GetStatusToSever(id_sector);
-        printwriter.write(object.toString()); //write the message to output stream
-        printwriter.flush();
-
         Runnable runnable = new Runnable() {
             public void run() {
                 try {
@@ -177,8 +171,10 @@ public class riego_activity extends Activity {
                         charArray.append('}');
                         Log.d("NETWORK-RECEIVE", charArray.toString());
                         object_recv = new JSONObject(charArray.toString());
-                        if (object_recv.getString("Name").equals(id_sector))
+                        if (object_recv.getString("Name").equals(id_sector)) {
+
                             break;
+                        }
                     }while(true);
 
                     on_off.setChecked(Boolean.valueOf(object_recv.getString("OnOff")));
@@ -235,12 +231,22 @@ public class riego_activity extends Activity {
         readerThread = new Thread(runnable, "SocketThread");
         readerThread.start();
 
+        // Petición de estado del blind al servidor
+        writeJSON_GetStatusToSever(id_sector);
+        printwriter.write(object.toString()); //write the message to output stream
+        printwriter.flush();
+
         on_off.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // The server changes the solar button
-                writeJSON_toServer(id_sector, "True", "None", "None",
-                        "None", "None",
-                        "None", "None");
+                if (on_off.isChecked())
+                    writeJSON_toServer(id_sector, "True", "None", "None",
+                            "None", "None",
+                            "None", "None");
+                else
+                    writeJSON_toServer(id_sector, "False", "None", "None",
+                            "None", "None",
+                            "None", "None");
 
                 message = object.toString();
 

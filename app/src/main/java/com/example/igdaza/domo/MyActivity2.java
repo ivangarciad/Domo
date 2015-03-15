@@ -186,7 +186,6 @@ public class MyActivity2 extends Activity {
         final SeekBar seekBar6 = (SeekBar)findViewById(R.id.seekBar6);
         final SeekBar seekBar7 = (SeekBar)findViewById(R.id.seekBar7);
         final SeekBar seekBar8 = (SeekBar)findViewById(R.id.seekBar8);
-        final SeekBar seekBar9 = (SeekBar)findViewById(R.id.seekBar9);
 
         final CheckBox monday = (CheckBox) findViewById(R.id.checkBox_monday);
         final CheckBox thusday = (CheckBox) findViewById(R.id.checkBox_thusday);
@@ -198,23 +197,20 @@ public class MyActivity2 extends Activity {
 
         textLabel.setText(room_name);
 
-        // Petición de estado del blind al servidor
-        writeJSON_GetStatus(id_room);
-        printwriter.write(object.toString()); //write the message to output stream
-        printwriter.flush();
-
         Runnable runnable = new Runnable() {
             public void run() {
                 try {
                     Log.d("NETWORK-RECEIVE", "Trying to read information from the server ...");
 
                     CharArrayWriter charArray = new CharArrayWriter();
+
+
                     do {
                         charArray.reset();
                         int ch = bufferedReader.read();
-                        while((char)ch != '}') {
+                        while ((char) ch != '}') {
                             // converts int to character
-                            char c = (char)ch;
+                            char c = (char) ch;
                             charArray.append(c);
                             ch = bufferedReader.read();
                         }
@@ -223,8 +219,7 @@ public class MyActivity2 extends Activity {
                         object_recv = new JSONObject(charArray.toString());
                         if (object_recv.getString("Name").equals(id_room))
                             break;
-                    }while(true);
-
+                    } while (true);
 
                     if (object_recv.getString("Auto").equals("True")) {
                         radioButton_Hour.setChecked(true);
@@ -241,27 +236,25 @@ public class MyActivity2 extends Activity {
                         radioButton_Profile.setChecked(true);
                         openHour.setEnabled(false);
                         closeHour.setEnabled(false);
-
-                        seekBar1.setProgress(object_recv.getInt("value_1"));
-                        seekBar2.setProgress(object_recv.getInt("value_2"));
-                        seekBar3.setProgress(object_recv.getInt("value_3"));
-                        seekBar4.setProgress(object_recv.getInt("value_4"));
-                        seekBar5.setProgress(object_recv.getInt("value_5"));
-                        seekBar6.setProgress(object_recv.getInt("value_6"));
-                        seekBar7.setProgress(object_recv.getInt("value_7"));
-                        seekBar8.setProgress(object_recv.getInt("value_8"));
-                        seekBar9.setProgress(object_recv.getInt("value_9"));
-
-
-
-                        monday.setChecked(Boolean.valueOf(object_recv.getString("Mon")));
-                        thusday.setChecked(Boolean.valueOf(object_recv.getString("Tue")));
-                        wendsday.setChecked(Boolean.valueOf(object_recv.getString("Wed")));
-                        thursday.setChecked(Boolean.valueOf(object_recv.getString("Thu")));
-                        friday.setChecked(Boolean.valueOf(object_recv.getString("Fri")));
-                        saterday.setChecked(Boolean.valueOf(object_recv.getString("Sat")));
-                        sunday.setChecked(Boolean.valueOf(object_recv.getString("Sun")));
                     }
+
+                    seekBar1.setProgress(object_recv.getInt("value_1"));
+                    seekBar2.setProgress(object_recv.getInt("value_2"));
+                    seekBar3.setProgress(object_recv.getInt("value_3"));
+                    seekBar4.setProgress(object_recv.getInt("value_4"));
+                    seekBar5.setProgress(object_recv.getInt("value_5"));
+                    seekBar6.setProgress(object_recv.getInt("value_6"));
+                    seekBar7.setProgress(object_recv.getInt("value_7"));
+                    seekBar8.setProgress(object_recv.getInt("value_8"));
+
+                    monday.setChecked(Boolean.valueOf(object_recv.getString("Mon")));
+                    thusday.setChecked(Boolean.valueOf(object_recv.getString("Tue")));
+                    wendsday.setChecked(Boolean.valueOf(object_recv.getString("Wed")));
+                    thursday.setChecked(Boolean.valueOf(object_recv.getString("Thu")));
+                    friday.setChecked(Boolean.valueOf(object_recv.getString("Fri")));
+                    saterday.setChecked(Boolean.valueOf(object_recv.getString("Sat")));
+                    sunday.setChecked(Boolean.valueOf(object_recv.getString("Sun")));
+
 
                     if (object_recv.getString("Status").equals("OPEN"))
                     {
@@ -286,6 +279,11 @@ public class MyActivity2 extends Activity {
         readerThread = new Thread(runnable, "SocketThread");
         readerThread.start();
 
+        // Petición de estado del blind al servidor
+        writeJSON_GetStatus(id_room);
+        printwriter.write(object.toString()); //write the message to output stream
+        printwriter.flush();
+
         radioButton_Solar.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // The server changes the solar button
@@ -294,6 +292,10 @@ public class MyActivity2 extends Activity {
 
                 printwriter.write(message); //write the message to output stream
                 printwriter.flush();
+
+                radioButton_Solar.setChecked(true);
+                radioButton_Hour.setChecked(false);
+                radioButton_Profile.setChecked(false);
 
                 openHour.setEnabled(false);
                 closeHour.setEnabled(false);
@@ -309,6 +311,10 @@ public class MyActivity2 extends Activity {
                 printwriter.write(message); //write the message to output stream
                 printwriter.flush();
 
+                radioButton_Solar.setChecked(false);
+                radioButton_Hour.setChecked(true);
+                radioButton_Profile.setChecked(false);
+
                 openHour.setEnabled(true);
                 closeHour.setEnabled(true);
             }
@@ -318,12 +324,16 @@ public class MyActivity2 extends Activity {
             public void onClick(View v) {
                 writeJSON_Profile(id_room, seekBar1.getProgress(), seekBar2.getProgress(), seekBar3.getProgress(), seekBar4.getProgress(),
                         seekBar5.getProgress(), seekBar6.getProgress(), seekBar7.getProgress(),seekBar8.getProgress(),
-                        seekBar9.getProgress(), monday.isChecked(), thusday.isChecked(), wendsday.isChecked(), thursday.isChecked(),
+                        0, monday.isChecked(), thusday.isChecked(), wendsday.isChecked(), thursday.isChecked(),
                         friday.isChecked(), saterday.isChecked(), sunday.isChecked());
                 message = object.toString();
 
                 printwriter.write(message); //write the message to output stream
                 printwriter.flush();
+
+                radioButton_Solar.setChecked(false);
+                radioButton_Hour.setChecked(false);
+                radioButton_Profile.setChecked(true);
 
                 openHour.setEnabled(false);
                 closeHour.setEnabled(false);
